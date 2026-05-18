@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store - Search & Cart (Task 3)</title>
+    <link rel="stylesheet" href="customer_homepage.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">BookStore Panel</div>
+        <div class="cart-icon-container" id="cart-nav-trigger">
+            🛒 Cart <span class="cart-count" id="global-cart-count">0</span>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        
+        <section class="shop-section">
+            
+            <div class="search-container">
+                <input type="text" id="search" class="search" placeholder="Search books dynamically...">
+                
+                <select id="filter" class="filter">
+                    <option value="title">Search by Title</option>
+                    <option value="author">Search by Author</option>
+                    <option value="category">Search by Genre/Category</option>
+                </select>
+            </div>
+
+            <div class="display-books" id="display-books"></div>
+        </section>
+
+        <section class="cart-section">
+            <div class="cart-header">
+                <span>Your Shopping Cart</span>
+                <button class="btn-order-history" id="btn-order-history" onclick="window.location.href='../checkout_page/checkout_history.html'">📋 Order History</button>
+            </div>
+            
+            <div class="cart-items-list" id="cart-items-container"></div>
+
+            <div class="cart-total-section">
+                <div class="total-row">
+                    <span>Total Amount:</span>
+                    <span id="total-price">$0.00</span>
+                </div>
+                <button class="btn-checkout" id="btn-checkout">Proceed to Checkout</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="customer_homepage.js"></script>
+</body>
+</html>

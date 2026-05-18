@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Online Book Store</title>
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+
+    <div class="checkout-container">
+        
+        <div class="checkout-card">
+            <h2 class="checkout-title">Shipping & Payment</h2>
+            <form id="checkout-form">
+                
+                <div class="form-group">
+                    <label for="address">Delivery Address</label>
+                    <textarea id="address" name="address" rows="4" placeholder="Enter your full delivery address here..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                   <label for="payment_method">Select Payment Method</label>
+                   <select id="payment_method" name="payment_method" required>
+                   <option value="">-- Choose Option --</option>
+                   <option value="bKash">bKash</option>
+                   <option value="Cash on Delivery">Cash on Delivery</option>
+                   <option value="Nagad">Nagad</option>
+                   <option value="Credit Card">Credit Card</option>
+                   <option value="Bank Transfer">Bank Transfer</option>
+                   </select>
+                </div>
+
+                <button type="submit" class="btn-place-order">Confirm & Place Order</button>
+            </form>
+            <a href="../home_page/customer_homepage.html" class="back-link">← Back to Shopping</a>
+        </div>
+
+        <div class="checkout-card">
+            <h2 class="checkout-title">Order Summary</h2>
+            
+            <div id="checkout-items-list">
+                </div>
+
+            <div class="total-bill">
+                <span>Total Amount:</span>
+                <span id="checkout-total-price">$0.00</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="checkout.js"></script>
+</body>
+</html>
