@@ -90,6 +90,38 @@ function getData() {
 }
 
 
+function getCartData() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '../../control/customer_homepage_control.php?chk_fetch_cart=true', true);
+
+    handleResponse(xhr, function() {
+        var response = JSON.parse(xhr.responseText);
+        cartContainer.innerHTML = '';
+
+        var totalAmount = 0;
+        var totalItems  = 0;
+
+        if(response.length === 0) {
+            cartContainer.innerHTML = '<p style="text-align:center;color:#7f8c8d;padding:15px 0;">Your cart is empty.</p>';
+            totalPriceElem.innerHTML  = '$0.00';
+            globalCartCount.innerHTML = '0';
+            return;
+        }
+
+        response.forEach(function(value) {
+            cartContainer.innerHTML += cartData(value);
+            var itemQty  = parseInt(value['quantity']) || 1;
+            totalAmount += parseFloat(value['price']) * itemQty;
+            totalItems  += itemQty;
+        });
+
+        totalPriceElem.innerHTML  = '$' + totalAmount.toFixed(2);
+        globalCartCount.innerHTML = totalItems;
+    }, 'Error fetching cart: ');
+
+    xhr.send();
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
     getData(); 
@@ -130,37 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-function getCartData() {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', '../../control/customer_homepage_control.php?chk_fetch_cart=true', true);
 
-    handleResponse(xhr, function() {
-        var response = JSON.parse(xhr.responseText);
-        cartContainer.innerHTML = '';
-
-        var totalAmount = 0;
-        var totalItems  = 0;
-
-        if(response.length === 0) {
-            cartContainer.innerHTML = '<p style="text-align:center;color:#7f8c8d;padding:15px 0;">Your cart is empty.</p>';
-            totalPriceElem.innerHTML  = '$0.00';
-            globalCartCount.innerHTML = '0';
-            return;
-        }
-
-        response.forEach(function(value) {
-            cartContainer.innerHTML += cartData(value);
-            var itemQty  = parseInt(value['quantity']) || 1;
-            totalAmount += parseFloat(value['price']) * itemQty;
-            totalItems  += itemQty;
-        });
-
-        totalPriceElem.innerHTML  = '$' + totalAmount.toFixed(2);
-        globalCartCount.innerHTML = totalItems;
-    }, 'Error fetching cart: ');
-
-    xhr.send();
-}
 
 function addToCart(bookId) {
     var xhr = new XMLHttpRequest();
