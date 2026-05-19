@@ -7,6 +7,7 @@ require_once __DIR__ . '/db_config.php';
 require_once __DIR__ . '/../model/login_model.php';
 
 
+//control.php
 if (isset($_POST['login'])) {
     $email    = isset($_POST['email'])    ? trim($_POST['email'])    : '';
     $password = isset($_POST['password']) ? trim($_POST['password']) : '';

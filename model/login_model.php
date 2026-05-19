@@ -1,5 +1,5 @@
 <?php
-
+//login.php
 function getUserByEmailAndPass($conn, $email, $password) {
     $email = mysqli_real_escape_string($conn, $email);
     $password = mysqli_real_escape_string($conn, $password);

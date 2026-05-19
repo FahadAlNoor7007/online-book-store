@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    //login.js
     
     var loginForm = document.getElementById('login-form');
 

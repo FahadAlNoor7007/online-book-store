@@ -37,6 +37,13 @@ function searchBook($conn, $query, $filter) {
 }
 
 
+function checkStock($conn, $book_id) {
+    $book_id = (int)$book_id;
+    $result = mysqli_query($conn, "SELECT stock FROM books WHERE id = $book_id");
+    return mysqli_fetch_assoc($result);
+}
+
+
 function getCartItems($conn, $user_id) {
     $user_id = (int)$user_id;
 
@@ -49,11 +56,7 @@ function getCartItems($conn, $user_id) {
 }
 
 
-function checkStock($conn, $book_id) {
-    $book_id = (int)$book_id;
-    $result = mysqli_query($conn, "SELECT stock FROM books WHERE id = $book_id");
-    return mysqli_fetch_assoc($result);
-}
+
 
 
 function checkCartItem($conn, $user_id, $book_id) {
