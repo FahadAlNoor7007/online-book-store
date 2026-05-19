@@ -72,6 +72,25 @@ function cartData(value) {
 }
 
 
+
+function getData() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '../../control/customer_homepage_control.php?chk_fetch=true', true);
+
+    handleResponse(xhr, function() {
+        var response = JSON.parse(xhr.responseText);
+        display_books.innerHTML = ''; 
+
+        response.forEach(function(value) {
+            display_books.innerHTML += bookData(value);
+        });
+    }, 'Error fetching data: ');
+
+    xhr.send();
+}
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
     getData(); 
     getCartData();
@@ -108,21 +127,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-function getData() {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', '../../control/customer_homepage_control.php?chk_fetch=true', true);
-
-    handleResponse(xhr, function() {
-        var response = JSON.parse(xhr.responseText);
-        display_books.innerHTML = ''; 
-
-        response.forEach(function(value) {
-            display_books.innerHTML += bookData(value);
-        });
-    }, 'Error fetching data: ');
-
-    xhr.send();
-}
 
 
 
