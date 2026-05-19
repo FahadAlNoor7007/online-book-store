@@ -1,4 +1,5 @@
 <?php
+//Checkout php
 
 
 function getCartItemsForCheckout($conn, $user_id) {

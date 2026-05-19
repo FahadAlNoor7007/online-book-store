@@ -1,3 +1,6 @@
+
+//Checkout js
+
 document.addEventListener('DOMContentLoaded', function() {
 
     if (document.getElementById('checkout-form')) {
