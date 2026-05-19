@@ -42,24 +42,6 @@ if (isset($_GET['chk_search'])) {
 }
 
 
-if (isset($_GET['chk_fetch_cart'])) {
-    $user_id = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : 1;
-
-    $result = getCartItems($conn, $user_id);
-    $arr = [];
-
-    if ($result) {
-        while ($rows = mysqli_fetch_assoc($result)) {
-            array_push($arr, $rows);
-        }
-    }
-
-    header('Content-Type: application/json');
-    echo json_encode($arr);
-    exit;
-}
-
-
 if (isset($_GET['chk_add_cart'])) {
     $user_id = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : 1;
     $book_id = isset($_POST['book_id']) ? (int)$_POST['book_id'] : 0;
@@ -87,6 +69,30 @@ if (isset($_GET['chk_add_cart'])) {
 }
 
 
+
+if (isset($_GET['chk_fetch_cart'])) {
+    $user_id = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : 1;
+
+    $result = getCartItems($conn, $user_id);
+    $arr = [];
+
+    if ($result) {
+        while ($rows = mysqli_fetch_assoc($result)) {
+            array_push($arr, $rows);
+        }
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($arr);
+    exit;
+}
+
+
+
+
+
+
+
 if (isset($_GET['chk_update_cart'])) {
     $user_id = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : 1;
     $cart_id = isset($_POST['cart_id']) ? (int)$_POST['cart_id'] : 0;
@@ -97,6 +103,8 @@ if (isset($_GET['chk_update_cart'])) {
         echo json_encode(['success' => false]);
         exit;
     }
+
+
 
     $cartRow = getCartRow($conn, $cart_id, $user_id);
 
@@ -112,6 +120,12 @@ if (isset($_GET['chk_update_cart'])) {
     echo json_encode(['success' => true]);
     exit;
 }
+
+
+
+
+
+
 
 
 if (isset($_GET['chk_remove_cart'])) {
